@@ -64,5 +64,14 @@
 - name: restart nginx
   service: name=nginx state=restarted
 
-- name: Setting Permissive
-  command: chown -R nginx:nginx "/vagrant/{{ wp_folder_name }}"
+# 'selinux' not supported in vagrant VM.
+# If you use VitualBox, set to permissive
+# Manually, >_ setenforce Permissive
+#   enforcing - SELinux security policy is enforced.
+#   permissive - SELinux prints warnings instead of enforcing.
+#   disabled - No SELinux policy is loaded.
+- name: Selinux permissive
+  lineinfile:
+    dest: /etc/sysconfig/selinux
+    regexp: '^SELINUX=enforcing'
+    line: 'SELINUX=permissive'
