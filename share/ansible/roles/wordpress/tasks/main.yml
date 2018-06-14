@@ -1,0 +1,13 @@
+---
+- include: 01_base.yml
+- include: 02_nginx.yml
+- include: 03_php7.yml
+- include: 04_mariaDB.yml
+# - include: 04_mysql.yml
+- include: 05_wordpress.yml
+
+# After vagrant up if 403
+# getenforce
+# setenforce Permissive
+# chcon -Rt httpd_sys_content_t /vagrant/wordpress
+# chown -R nginx:nginx "/vagrant/wordpress"

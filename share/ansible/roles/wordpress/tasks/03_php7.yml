@@ -1,0 +1,28 @@
+---
+- name: Install remi
+  yum:
+    name: http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+    state: present
+
+- name: Install php72-php-fpm and deps
+  yum: name={{ item }} state=present
+  with_items:
+    - php72
+    - php72-php-cli
+    - php72-php-fpm
+    - php72-php-intl
+    - php72-php-pdo
+    - php72-php-mbstring
+    - php72-php-opcache
+    - php72-php-pecl-zip
+    - php72-php-xml
+    - php72-php-dbg.x86_64
+    - php72-php-pecl-xdebug
+    - php72-php-mysql
+    - php72-php-mysqlnd
+
+- name: Disable default pool
+  command: mv /etc/opt/remi/php72/php-fpm.d/www.conf /etc/opt/remi/php72/php-fpm.d/www.disabled creates=/etc/opt/remi/php72/php-fpm.d/www.disabled
+
+- name: Copy php-fpm configuration
+  template: src=wp-php7.conf dest=/etc/opt/remi/php72/php-fpm.d/

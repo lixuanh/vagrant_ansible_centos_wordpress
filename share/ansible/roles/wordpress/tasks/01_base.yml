@@ -1,0 +1,24 @@
+---
+#- name: ruby install
+#   yum: name=ruby state=present
+
+- name: EPEL install
+  yum: name=epel-release state=present
+
+# - name: upgrade all packages
+#   yum:
+#     name: '*'
+#     state: latest
+
+# - name: add host
+#   lineinfile:
+#     dest: /etc/hosts
+#     regexp: 'localtest.com'
+#     line: '127.0.0.1 localtest.com'
+#   when: fm.stat.exists
+
+- name: Install Firewalld
+  yum: name=firewalld state=present
+
+- name: Firewalld service state
+  service: name=firewalld state=started enabled=yes
