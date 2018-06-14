@@ -16,7 +16,6 @@
     - php72-php-opcache
     - php72-php-pecl-zip
     - php72-php-xml
-    - php72-php-dbg.x86_64
     - php72-php-pecl-xdebug
     - php72-php-mysql
     - php72-php-mysqlnd

@@ -22,3 +22,15 @@
 
 - name: Firewalld service state
   service: name=firewalld state=started enabled=yes
+
+# 'selinux' not supported in vagrant VM.
+# If you use VitualBox, set to permissive
+# Manually, >_ setenforce Permissive
+#   enforcing - SELinux security policy is enforced.
+#   permissive - SELinux prints warnings instead of enforcing.
+#   disabled - No SELinux policy is loaded.
+- name: Selinux disabled
+  lineinfile:
+    dest: /etc/sysconfig/selinux
+    regexp: '^SELINUX=enforcing'
+    line: 'SELINUX=disabled'

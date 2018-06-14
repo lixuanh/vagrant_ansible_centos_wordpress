@@ -18,8 +18,8 @@
 - name: Create MariaDB log file
   file: path=/var/log/mysqld.log state=touch owner=mysql group=mysql mode=0775
 
-- name: Start MariaDB Service
-  service: name=mariadb state=started enabled=yes
+- name: Restart MariaDB Service
+  service: name=mariadb state=restarted enabled=yes
 
 - name: insert firewalld rule
   firewalld: port={{ mysql_port }}/tcp permanent=true state=enabled immediate=yes
